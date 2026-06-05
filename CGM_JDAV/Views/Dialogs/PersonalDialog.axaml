@@ -1,0 +1,78 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CGM_JDAV.ViewModels"
+             xmlns:p1="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+             mc:Ignorable="d"
+             d:DesignWidth="340"
+             Width="340"
+             x:DataType="vm:MenuPrincipalViewModel"
+             x:Class="CGM_JDAV.Views.Dialogs.PersonalDialog">
+    <Border Background="White" CornerRadius="8" Padding="8">
+        <StackPanel Margin="4">
+            <TextBlock Text="NUEVO PROFESIONAL"
+                       HorizontalAlignment="Center"
+                       Margin="10"
+                       FontSize="22"
+                       FontWeight="Black"
+                       Foreground="#1B3A7A"/>
+
+            <TextBox Theme="{StaticResource FilledTextBox}"
+                     Watermark="Ej: María"
+                     UseFloatingWatermark="True"
+                     p1:TextFieldAssist.Label="Nombre"
+                     Margin="10,4"
+                     Text="{Binding DoctorSeleccionado.Nombre}"/>
+
+            <TextBox Theme="{StaticResource FilledTextBox}"
+                     Watermark="Ej: García"
+                     UseFloatingWatermark="True"
+                     p1:TextFieldAssist.Label="Apellido"
+                     Margin="10,4"
+                     Text="{Binding DoctorSeleccionado.Apellido}"/>
+
+            <TextBlock Text="Tipo"
+                       Margin="10,8,10,0"
+                       FontWeight="SemiBold"
+                       Foreground="#1B3A7A"/>
+            <ComboBox Margin="10,4"
+                      HorizontalAlignment="Stretch"
+                      ItemsSource="{Binding TiposPersonal}"
+                      SelectedItem="{Binding DoctorSeleccionado.Tipo}"/>
+
+            <TextBlock Text="Especialidad"
+                       Margin="10,8,10,0"
+                       FontWeight="SemiBold"
+                       Foreground="#1B3A7A"/>
+            <ComboBox Margin="10,4"
+                      HorizontalAlignment="Stretch"
+                      ItemsSource="{Binding ListaEspecialidades}"
+                      SelectedItem="{Binding EspecialidadDelDoctor}"/>
+            
+            <TextBlock Text="{Binding MensajeErrorDialog}"
+                       Foreground="Red"
+                       FontSize="12"
+                       Margin="10,4"
+                       HorizontalAlignment="Center"
+                       IsVisible="{Binding HayErrorDialog}"/>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="10">
+                <Button Content="AÑADIR"
+                        Margin="10"
+                        Width="120"
+                        Background="DarkGreen"
+                        Foreground="White"
+                        Command="{Binding GuardarPersonalCommand}"/>
+                <Button Content="CANCELAR"
+                        Margin="10"
+                        Width="120"
+                        Background="DarkRed"
+                        Foreground="White"
+                        Command="{Binding ClosePersonalDialogCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

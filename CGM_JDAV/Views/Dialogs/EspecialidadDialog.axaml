@@ -1,0 +1,89 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CGM_JDAV.ViewModels"
+             xmlns:p1="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+             mc:Ignorable="d"
+             d:DesignWidth="320"
+             Width="320"
+             d:DesignHeight="520"
+             x:DataType="vm:MenuPrincipalViewModel"
+             x:Class="CGM_JDAV.Views.Dialogs.EspecialidadDialog">
+    <Design.DataContext>
+        <vm:MenuPrincipalViewModel />
+    </Design.DataContext>
+    
+     <Border Background="White" CornerRadius="8" Padding="8">
+        <StackPanel Margin="4">
+            <TextBlock Text="NUEVA ESPECIALIDAD"
+                       HorizontalAlignment="Center"
+                       Margin="10"
+                       FontSize="22"
+                       FontWeight="Black"
+                       Foreground="#1B3A7A"/>
+
+            <TextBox Theme="{StaticResource FilledTextBox}"
+                     Watermark="Ej: Pediatría"
+                     UseFloatingWatermark="True"
+                     p1:TextFieldAssist.Label="Nombre"
+                     Margin="10,4"
+                     Text="{Binding EspecialidadSeleccionada.Nombre}"/>
+
+            <TextBlock Text="Días de atención"
+                       Margin="10,8,10,0"
+                       FontWeight="SemiBold"
+                       Foreground="#1B3A7A"/>
+
+            <WrapPanel Margin="10,4">
+                <CheckBox Content="Lun" IsChecked="{Binding DiaLunes}" Margin="0,0,8,0"/>
+                <CheckBox Content="Mar" IsChecked="{Binding DiaMartes}" Margin="0,0,8,0"/>
+                <CheckBox Content="Mié" IsChecked="{Binding DiaMiercoles}" Margin="0,0,8,0"/>
+                <CheckBox Content="Jue" IsChecked="{Binding DiaJueves}" Margin="0,0,8,0"/>
+                <CheckBox Content="Vie" IsChecked="{Binding DiaViernes}" Margin="0,0,8,0"/>
+                <CheckBox Content="Sáb" IsChecked="{Binding DiaSabado}" Margin="0,0,8,0"/>
+                <CheckBox Content="Dom" IsChecked="{Binding DiaDomingo}" Margin="0,0,8,0"/>
+            </WrapPanel>
+
+            <TextBlock Text="Hora inicio"
+                       Margin="10,8,10,0"
+                       FontWeight="SemiBold"
+                       Foreground="#1B3A7A"/>
+            <TimePicker Margin="10,4"
+                        ClockIdentifier="24HourClock"
+                        SelectedTime="{Binding HoraInicioSel}"/>
+
+            <TextBlock Text="Hora fin"
+                       Margin="10,8,10,0"
+                       FontWeight="SemiBold"
+                       Foreground="#1B3A7A"/>
+            <TimePicker Margin="10,4"
+                        ClockIdentifier="24HourClock"
+                        SelectedTime="{Binding HoraFinSel}"/>
+            
+            <TextBlock Text="{Binding MensajeErrorDialog}"
+                       Foreground="Red"
+                       FontSize="12"
+                       Margin="10,4"
+                       HorizontalAlignment="Center"
+                       IsVisible="{Binding HayErrorDialog}"/>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="10">
+                <Button Content="AÑADIR"
+                        Margin="10"
+                        Width="120"
+                        Background="DarkGreen"
+                        Foreground="White"
+                        Command="{Binding GuardarEspecialidadCommand}"/>
+                <Button Content="CANCELAR"
+                        Margin="10"
+                        Width="120"
+                        Background="DarkRed"
+                        Foreground="White"
+                        Command="{Binding CloseEspecialidadDialogCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

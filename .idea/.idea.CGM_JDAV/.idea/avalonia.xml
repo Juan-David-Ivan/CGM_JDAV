@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="CGM_JDAV/App.axaml" value="CGM_JDAV/CGM_JDAV.csproj" />
+        <entry key="CGM_JDAV/Views/Dialogs/CitaDialog.axaml" value="CGM_JDAV/CGM_JDAV.csproj" />
+        <entry key="CGM_JDAV/Views/Dialogs/EspecialidadDialog.axaml" value="CGM_JDAV/CGM_JDAV.csproj" />
+        <entry key="CGM_JDAV/Views/Dialogs/PacienteDialog.axaml" value="CGM_JDAV/CGM_JDAV.csproj" />
+        <entry key="CGM_JDAV/Views/Dialogs/PersonaDialog.axaml" value="CGM_JDAV/CGM_JDAV.csproj" />
+        <entry key="CGM_JDAV/Views/Dialogs/PersonalDialog.axaml" value="CGM_JDAV/CGM_JDAV.csproj" />
+        <entry key="CGM_JDAV/Views/LoginView.axaml" value="CGM_JDAV/CGM_JDAV.csproj" />
+        <entry key="CGM_JDAV/Views/MainWindow.axaml" value="CGM_JDAV/CGM_JDAV.csproj" />
+        <entry key="CGM_JDAV/Views/MenuPrincipal.axaml" value="CGM_JDAV/CGM_JDAV.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

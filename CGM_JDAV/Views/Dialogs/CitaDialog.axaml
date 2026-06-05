@@ -1,0 +1,101 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CGM_JDAV.ViewModels"
+             xmlns:p1="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+             mc:Ignorable="d"
+             d:DesignWidth="340"
+             Width="340"
+             x:DataType="vm:MenuPrincipalViewModel"
+             x:Class="CGM_JDAV.Views.Dialogs.CitaDialog">
+    <Design.DataContext>
+        <vm:MenuPrincipalViewModel />
+    </Design.DataContext>
+
+    <Border Background="White" CornerRadius="8" Padding="8">
+        <StackPanel Margin="4">
+            <TextBlock Text="NUEVA CITA"
+                       HorizontalAlignment="Center"
+                       Margin="10"
+                       FontSize="22"
+                       FontWeight="Black"
+                       Foreground="#1B3A7A"/>
+
+            <TextBlock Text="Paciente"
+                       Margin="10,8,10,0"
+                       FontWeight="SemiBold"
+                       Foreground="#1B3A7A"/>
+            <ComboBox Margin="10,4"
+                      HorizontalAlignment="Stretch"
+                      ItemsSource="{Binding ListaPacientes}"
+                      SelectedItem="{Binding PacienteDeLaCita}"/>
+
+            <TextBlock Text="Especialidad"
+                       Margin="10,8,10,0"
+                       FontWeight="SemiBold"
+                       Foreground="#1B3A7A"/>
+            <ComboBox Margin="10,4"
+                      HorizontalAlignment="Stretch"
+                      ItemsSource="{Binding ListaEspecialidades}"
+                      SelectedItem="{Binding EspecialidadDeLaCita}"/>
+            
+            <TextBlock Text="{Binding HorarioEspecialidadCita}"
+                       FontSize="11"
+                       FontStyle="Italic"
+                       Foreground="#2B5BB8"
+                       Margin="10,0,10,4"
+                       IsVisible="{Binding HorarioEspecialidadCita, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+
+            <TextBlock Text="Doctor"
+                       Margin="10,8,10,0"
+                       FontWeight="SemiBold"
+                       Foreground="#1B3A7A"/>
+            <ComboBox Margin="10,4"
+                      HorizontalAlignment="Stretch"
+                      ItemsSource="{Binding ListaPersonal}"
+                      SelectedItem="{Binding DoctorDeLaCita}"/>
+
+            <TextBlock Text="Fecha"
+                       Margin="10,8,10,0"
+                       FontWeight="SemiBold"
+                       Foreground="#1B3A7A"/>
+            <DatePicker Margin="10,4"
+                        HorizontalAlignment="Stretch"
+                        SelectedDate="{Binding FechaCitaSel}"/>
+
+            <TextBlock Text="Hora"
+                       Margin="10,8,10,0"
+                       FontWeight="SemiBold"
+                       Foreground="#1B3A7A"/>
+            <TimePicker Margin="10,4"
+                        ClockIdentifier="24HourClock"
+                        SelectedTime="{Binding HoraCitaSel}"/>
+            
+            <TextBlock Text="{Binding MensajeErrorDialog}"
+                       Foreground="Red"
+                       FontSize="12"
+                       Margin="10,4"
+                       HorizontalAlignment="Center"
+                       IsVisible="{Binding HayErrorDialog}"/>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="10">
+                <Button Content="AÑADIR"
+                        Margin="10"
+                        Width="120"
+                        Background="DarkGreen"
+                        Foreground="White"
+                        Command="{Binding GuardarCitaCommand}"/>
+                <Button Content="CANCELAR"
+                        Margin="10"
+                        Width="120"
+                        Background="DarkRed"
+                        Foreground="White"
+                        Command="{Binding CloseCitaDialogCommand}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>
+

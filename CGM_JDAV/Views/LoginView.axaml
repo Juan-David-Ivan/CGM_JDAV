@@ -1,0 +1,91 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+             xmlns:p1="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+             xmlns:vm="clr-namespace:CGM_JDAV.ViewModels"
+             x:DataType="vm:LoginViewModel"
+             x:Class="CGM_JDAV.Views.LoginView">
+    
+    <Design.DataContext>
+        <vm:LoginViewModel />
+    </Design.DataContext>
+    
+    <Grid ColumnDefinitions="350,*">
+
+        <!-- Panel izquierdo azul -->
+        <Panel Grid.Column="0" Background="#1B3A7A">
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Spacing="16">
+                <Image Source="/Assets/logoJDAV.png"
+                       Width="160"
+                       Height="160"
+                       HorizontalAlignment="Center"/>
+                <TextBlock Text="CGM-JDAV"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Foreground="White"/>
+                <TextBlock Text="Consultas y Gestiones Médicas"
+                           FontSize="13"
+                           HorizontalAlignment="Center"
+                           Foreground="White"
+                           Opacity="0.75"/>
+                <Rectangle Width="40"
+                           Height="3"
+                           Fill="#C0392B"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Panel>
+
+        <!-- Panel derecho blanco -->
+        <Panel Grid.Column="1" Background="White">
+            <StackPanel VerticalAlignment="Center"
+                        Margin="48,0"
+                        Spacing="14">
+
+                <TextBlock Text="Bienvenido"
+                           FontSize="24"
+                           FontWeight="SemiBold"
+                           Foreground="#1B3A7A"/>
+
+                <TextBlock Text="Accede con tus credenciales de administrador"
+                           FontSize="13"
+                           Foreground="#888888"
+                           Margin="0,0,0,8"/>
+
+                <TextBox Theme="{StaticResource FilledTextBox}"
+                         UseFloatingWatermark="True"
+                         p1:TextFieldAssist.Label="Usuario"
+                         Watermark="Introduce tu usuario"
+                         Text="{Binding Usuario}" />
+
+                <TextBox Theme="{StaticResource FilledTextBox}"
+                         UseFloatingWatermark="True"
+                         Classes="revealPasswordButton"
+                         p1:TextFieldAssist.Label="Contraseña"
+                         Watermark="Introduce tu contraseña"
+                         PasswordChar="*"
+                         Text="{Binding Contrasena}" />
+
+                <TextBlock Text="{Binding MensajeError}"
+                           Foreground="Red"
+                           FontSize="12"
+                           IsVisible="{Binding HayError}"/>
+
+                <Button Content="ACCEDER"
+                        Classes="Raised"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Height="44"
+                        Margin="0,8,0,0"
+                        Command="{Binding LoginCommand}" />
+
+            </StackPanel>
+        </Panel>
+
+    </Grid>
+</UserControl>

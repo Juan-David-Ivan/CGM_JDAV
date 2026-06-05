@@ -1,0 +1,266 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:p1="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+             xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+             xmlns:vm="clr-namespace:CGM_JDAV.ViewModels"
+             xmlns:models="clr-namespace:CGM_JDAV.Models"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             x:DataType="vm:MenuPrincipalViewModel"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="550"
+             x:Class="CGM_JDAV.Views.MenuPrincipal">
+    <Design.DataContext>
+        <vm:MenuPrincipalViewModel />
+    </Design.DataContext>
+    <dialogHostAvalonia:DialogHost Identifier="HomeDialog" CloseOnClickAway="True">
+         <Grid ColumnDefinitions="220,*">
+
+            <!-- SIDEBAR -->
+            <Panel Grid.Column="0" Background="#1B3A7A">
+                <StackPanel>
+                    <Border BorderBrush="#2B5BB8" BorderThickness="0,0,0,1" Padding="16,20,16,16">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <Image Source="/Assets/logoJDAV.png" Width="34" Height="34"/>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="CGM-JDAV" FontSize="13" FontWeight="SemiBold" Foreground="White"/>
+                                <TextBlock Text="Panel de gestión" FontSize="10" Foreground="#88AABB"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <TextBlock Text="GESTIÓN" FontSize="10" Foreground="#557799" Margin="16,14,0,4"/>
+
+                    <Button Background="Transparent" HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left" Padding="16,10"
+                            Command="{Binding IrAEspecialidadesCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <avalonia:MaterialIcon Kind="Stethoscope" Width="20" Height="20" Foreground="White"/>
+                            <TextBlock Text="Especialidades" Foreground="White" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Background="Transparent" HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left" Padding="16,10"
+                            Command="{Binding IrAPersonalCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <avalonia:MaterialIcon Kind="AccountGroup" Width="20" Height="20" Foreground="White"/>
+                            <TextBlock Text="Personal médico" Foreground="White" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Background="Transparent" HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left" Padding="16,10"
+                            Command="{Binding IrAPacientesCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <avalonia:MaterialIcon Kind="Account" Width="20" Height="20" Foreground="White"/>
+                            <TextBlock Text="Pacientes" Foreground="White" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <TextBlock Text="CONSULTAS" FontSize="10" Foreground="#557799" Margin="16,14,0,4"/>
+
+                    <Button Background="Transparent" HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Left" Padding="16,10"
+                            Command="{Binding IrACitasCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <avalonia:MaterialIcon Kind="Calendar" Width="20" Height="20" Foreground="White"/>
+                            <TextBlock Text="Citas" Foreground="White" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Background="Transparent" HorizontalAlignment="Stretch"
+                            VerticalAlignment="Bottom"
+                            HorizontalContentAlignment="Left" Padding="16,12"
+                            Margin="0,0,0,8"
+                            Command="{Binding CerrarSesionCommand}">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <avalonia:MaterialIcon Kind="Logout" Width="20" Height="20" Foreground="#FFAAAA"/>
+                            <TextBlock Text="Cerrar sesión" Foreground="#FFAAAA" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Panel>
+
+            <!-- CONTENIDO DERECHO -->
+            <Grid Grid.Column="1" RowDefinitions="56,Auto,*" Background="#F4F6FA">
+
+                <!-- Topbar -->
+                <Border Grid.Row="0" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+                    <Grid ColumnDefinitions="*,Auto" Margin="24,0">
+                        <TextBlock Text="{Binding TituloSeccion}" VerticalAlignment="Center"
+                                   FontSize="16" FontWeight="SemiBold" Foreground="#1B3A7A"/>
+                        <Button Grid.Column="1" VerticalAlignment="Center"
+                                Background="#1B3A7A" Foreground="White"
+                                Command="{Binding AbrirDialogCommand}">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <avalonia:MaterialIcon Kind="Plus" Width="16" Height="16" Foreground="White"/>
+                                <TextBlock Text="{Binding TextoBotonNuevo}" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Border>
+
+                <!-- Tarjetas resumen -->
+                <UniformGrid Grid.Row="1" Columns="4" Margin="20,16,20,0">
+                    <Border Background="#1B3A7A" CornerRadius="8" Margin="0,0,6,0" Padding="14">
+                        <StackPanel>
+                            <TextBlock Text="Especialidades" FontSize="11" Foreground="#AAC4D4"/>
+                            <TextBlock Text="{Binding TotalEspecialidades}" FontSize="24" FontWeight="SemiBold" Foreground="White"/>
+                            <TextBlock Text="activas" FontSize="11" Foreground="#557799"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#1B3A7A" CornerRadius="8" Margin="6,0,6,0" Padding="14">
+                        <StackPanel>
+                            <TextBlock Text="Personal" FontSize="11" Foreground="#AAC4D4"/>
+                            <TextBlock Text="{Binding TotalPersonal}" FontSize="24" FontWeight="SemiBold" Foreground="White"/>
+                            <TextBlock Text="registrados" FontSize="11" Foreground="#557799"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#1B3A7A" CornerRadius="8" Margin="6,0,6,0" Padding="14">
+                        <StackPanel>
+                            <TextBlock Text="Pacientes" FontSize="11" Foreground="#AAC4D4"/>
+                            <TextBlock Text="{Binding TotalPacientes}" FontSize="24" FontWeight="SemiBold" Foreground="White"/>
+                            <TextBlock Text="en sistema" FontSize="11" Foreground="#557799"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Background="#C0392B" CornerRadius="8" Margin="6,0,0,0" Padding="14">
+                        <StackPanel>
+                            <TextBlock Text="Citas hoy" FontSize="11" Foreground="#FFAAAA"/>
+                            <TextBlock Text="{Binding TotalCitasHoy}" FontSize="24" FontWeight="SemiBold" Foreground="White"/>
+                            <TextBlock Text="pendientes" FontSize="11" Foreground="#FF8888"/>
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- PANELES: solo se ve uno a la vez según el menú -->
+                <Grid Grid.Row="2" Margin="20,16,20,20">
+                    <!-- Especialidades -->
+                    <Border IsVisible="{Binding EsEspecialidades}" Background="White" CornerRadius="8">
+                        <Grid RowDefinitions="Auto,*">
+                            <Border Grid.Row="0" Background="#1B3A7A" CornerRadius="8,8,0,0" Padding="14,10">
+                                <TextBlock Text="Listado de especialidades" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                            <ListBox Grid.Row="1" Background="Transparent" ItemsSource="{Binding ListaEspecialidades}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="models:EspecialidadModel">
+                                        <Grid ColumnDefinitions="*,*,*,Auto" Margin="4,6">
+                                            <TextBlock Grid.Column="0" Text="{Binding Nombre}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding Dias}" VerticalAlignment="Center" Foreground="#666"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding HoraInicio}" VerticalAlignment="Center" Foreground="#666"/>
+                                            <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="6">
+                                                <Button Background="#2B5BB8" Foreground="White" Padding="8,4" Content="Editar"
+                                                        Command="{Binding $parent[UserControl].((vm:MenuPrincipalViewModel)DataContext).EditarEspecialidadCommand}"
+                                                        CommandParameter="{Binding}"/>
+                                                <Button Background="#C0392B" Foreground="White" Padding="8,4" Content="Eliminar"
+                                                        Command="{Binding $parent[UserControl].((vm:MenuPrincipalViewModel)DataContext).EliminarEspecialidadCommand}"
+                                                        CommandParameter="{Binding}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </Border>
+
+                    <!-- Personal -->
+                    <Border IsVisible="{Binding EsPersonal}" Background="White" CornerRadius="8">
+                        <Grid RowDefinitions="Auto,*">
+                            <Border Grid.Row="0" Background="#1B3A7A" CornerRadius="8,8,0,0" Padding="14,10">
+                                <TextBlock Text="Listado del personal médico" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                            <ListBox Grid.Row="1" Background="Transparent" ItemsSource="{Binding ListaPersonal}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="models:DoctorModel">
+                                        <Grid ColumnDefinitions="*,*,*,Auto" Margin="4,6">
+                                            <TextBlock Grid.Column="0" VerticalAlignment="Center">
+                                                <Run Text="{Binding Nombre}"/>
+                                                <Run Text="{Binding Apellido}"/>
+                                            </TextBlock>
+                                            <TextBlock Grid.Column="1" Text="{Binding Tipo}" VerticalAlignment="Center" Foreground="#666"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding EspecialidadNombre}" VerticalAlignment="Center" Foreground="#666"/>
+                                            <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="6">
+                                                <Button Background="#2B5BB8" Foreground="White" Padding="8,4" Content="Editar"
+                                                        Command="{Binding $parent[UserControl].((vm:MenuPrincipalViewModel)DataContext).EditarPersonalCommand}"
+                                                        CommandParameter="{Binding}"/>
+                                                <Button Background="#C0392B" Foreground="White" Padding="8,4" Content="Eliminar"
+                                                        Command="{Binding $parent[UserControl].((vm:MenuPrincipalViewModel)DataContext).EliminarPersonalCommand}"
+                                                        CommandParameter="{Binding}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </Border>
+
+                    <!-- Pacientes -->
+                    <Border IsVisible="{Binding EsPacientes}" Background="White" CornerRadius="8">
+                        <Grid RowDefinitions="Auto,*">
+                            <Border Grid.Row="0" Background="#1B3A7A" CornerRadius="8,8,0,0" Padding="14,10">
+                                <TextBlock Text="Listado de pacientes" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                            <ListBox Grid.Row="1" Background="Transparent" ItemsSource="{Binding ListaPacientes}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="models:PacienteModel">
+                                        <Grid ColumnDefinitions="*,*,*,Auto" Margin="4,6">
+                                            <TextBlock Grid.Column="0" Text="{Binding Nombre}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding Apellido}" VerticalAlignment="Center" Foreground="#666"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding Dni}" VerticalAlignment="Center" Foreground="#666"/>
+                                            <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="6">
+                                                <Button Background="#2B5BB8" Foreground="White" Padding="8,4" Content="Editar"
+                                                        Command="{Binding $parent[UserControl].((vm:MenuPrincipalViewModel)DataContext).EditarPacienteCommand}"
+                                                        CommandParameter="{Binding}"/>
+                                                <Button Background="#C0392B" Foreground="White" Padding="8,4" Content="Eliminar"
+                                                        Command="{Binding $parent[UserControl].((vm:MenuPrincipalViewModel)DataContext).EliminarPacienteCommand}"
+                                                        CommandParameter="{Binding}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </Border>
+
+                    <!-- Citas -->
+                   <Border IsVisible="{Binding EsCitas}" Background="White" CornerRadius="8">
+                        <Grid RowDefinitions="Auto,Auto,*">
+                            <Border Grid.Row="0" Background="#1B3A7A" CornerRadius="8,8,0,0" Padding="14,10">
+                                <TextBlock Text="Listado de citas" Foreground="White" FontWeight="SemiBold"/>
+                            </Border>
+                            <Grid Grid.Row="1" ColumnDefinitions="*,*,*,Auto" Margin="8,8,8,4">
+                                <TextBlock Grid.Column="0" Text="PACIENTE" FontWeight="Bold" Foreground="#1B3A7A" FontSize="12"/>
+                                <TextBlock Grid.Column="1" Text="MÉDICO" FontWeight="Bold" Foreground="#1B3A7A" FontSize="12"/>
+                                <TextBlock Grid.Column="2" Text="FECHA Y HORA" FontWeight="Bold" Foreground="#1B3A7A" FontSize="12"/>
+                            </Grid>
+                            <ListBox Grid.Row="2" Background="Transparent" ItemsSource="{Binding ListaCitas}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="models:CitaModel">
+                                        <Grid ColumnDefinitions="*,*,*,Auto" Margin="4,6">
+                                            <TextBlock Grid.Column="0" Text="{Binding PacienteNombre}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding DoctorNombre}" VerticalAlignment="Center" Foreground="#666"/>
+                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Foreground="#666">
+                                                <Run Text="{Binding FechaCita}"/>
+                                                <Run Text="{Binding HoraCita}"/>
+                                            </TextBlock>
+                                            <StackPanel Grid.Column="3" Orientation="Horizontal" Spacing="6">
+                                                <Button Background="#2B5BB8" Foreground="White" Padding="8,4" Content="Editar"
+                                                        Command="{Binding $parent[UserControl].((vm:MenuPrincipalViewModel)DataContext).EditarCitaCommand}"
+                                                        CommandParameter="{Binding}"/>
+                                                <Button Background="#C0392B" Foreground="White" Padding="8,4" Content="Eliminar"
+                                                        Command="{Binding $parent[UserControl].((vm:MenuPrincipalViewModel)DataContext).EliminarCitaCommand}"
+                                                        CommandParameter="{Binding}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Grid>
+    </dialogHostAvalonia:DialogHost>
+     
+    
+    
+</UserControl>
